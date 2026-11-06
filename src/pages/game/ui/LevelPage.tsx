@@ -1,6 +1,5 @@
 import { QuizGame } from "@/features/play-quiz";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 import { LEVELS } from "@/entities/data/levels";
 
 interface Props {
@@ -9,7 +8,7 @@ interface Props {
     }>;
 }
 
-export const LevelPage = async ({params}: Props) => {
+export const LevelPage = async ({ params }: Props) => {
     const { levelId } = await params;
 
     if (!levelId) {
@@ -24,7 +23,7 @@ export const LevelPage = async ({params}: Props) => {
 
     switch (level.mode) {
         case "quiz":
-            return (<QuizGame levelId={Number(levelId)} />);
+            return <QuizGame levelId={Number(levelId)} />;
 
         case "crossword":
             return <div>Кроссворд пока не реализован.</div>;
@@ -38,4 +37,4 @@ export const LevelPage = async ({params}: Props) => {
         default:
             return <div>Неизвестный режим.</div>;
     }
-}
+};
