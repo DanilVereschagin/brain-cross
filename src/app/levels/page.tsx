@@ -1,4 +1,4 @@
-import { LevelsPage as Levels } from "@/pages/levels";
+import { LevelsPage as Levels } from "@/page/levels";
 
 export default function LevelsPage() {
     return (

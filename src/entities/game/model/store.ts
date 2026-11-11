@@ -3,6 +3,7 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import type { GameRun, CompletedRun, GameState } from "./types";
 import { LEVELS } from "@/entities/data/levels";
 import { QUESTION_BANK } from "@/entities/data/questions";
+import { error } from "next/dist/build/output/log";
 
 const TOTAL_LEVELS = 20;
 
@@ -10,6 +11,7 @@ type GameActions = {
     startNewGame: () => void;
     completeLevel: (score: number) => void;
     finishGame: () => void;
+    setHasHydrated: (state: boolean) => void;
 };
 
 type GameStore = GameState & GameActions;
@@ -34,7 +36,9 @@ export const useGameStore = create<GameStore>()(
     persist(
         (set, get) => ({
             currentRun: null,
+            _hasHydrated: false,
             leaderboard: [],
+            setHasHydrated: (state) => set({ _hasHydrated: state }),
             startNewGame: () => {
                 const run: GameRun = {
                     id: crypto.randomUUID(),
@@ -107,6 +111,12 @@ export const useGameStore = create<GameStore>()(
         {
             name: "braincross-storage",
             storage: createJSONStorage(() => localStorage),
+            onRehydrateStorage: () => (state) => {
+                if (error) {
+                    console.error("Ошибка гидратации стора:", error);
+                }
+                state?.setHasHydrated(true);
+            },
         },
     ),
 );

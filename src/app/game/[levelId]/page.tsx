@@ -1,6 +1,6 @@
 import { LEVELS } from "@/entities/data/levels";
 import { Suspense } from "react";
-import { LevelPage } from "@/pages/game";
+import { LevelPage } from "@/page/game";
 
 interface PageProps {
     params: Promise<{

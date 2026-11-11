@@ -1,5 +1,3 @@
-import type { GameMode } from "@/entities/level/model/types";
-
 export type GameRun = {
     id: string;
     levels: number[];
@@ -27,5 +25,6 @@ export type CompletedRun = {
 
 export type GameState = {
     currentRun: GameRun | null;
+    _hasHydrated: boolean;
     leaderboard: CompletedRun[];
 };

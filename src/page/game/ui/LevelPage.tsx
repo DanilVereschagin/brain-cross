@@ -1,6 +1,7 @@
 import { QuizGame } from "@/features/play-quiz";
 import { notFound } from "next/navigation";
 import { LEVELS } from "@/entities/data/levels";
+import { MemoryGame } from "@/features/play-memory";
 
 interface Props {
     params: Promise<{
@@ -26,7 +27,7 @@ export const LevelPage = async ({ params }: Props) => {
             return <QuizGame levelId={Number(levelId)} />;
 
         case "crossword":
-            return <div>Кроссворд пока не реализован.</div>;
+            return <MemoryGame levelId={Number(levelId)} />;
 
         case "memory":
             return <div>Поиск пар пока не реализован.</div>;

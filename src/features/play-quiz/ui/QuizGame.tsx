@@ -14,17 +14,13 @@ export const QuizGame = ({ levelId }: Props) => {
 
     const run = useGameStore((state) => state.currentRun);
     const completeLevel = useGameStore((state) => state.completeLevel);
+    const hasHydrated = useGameStore((state) => state._hasHydrated);
 
-    const [hydrated, setHydrated] = useState(false);
     const [questionIndex, setQuestionIndex] = useState(0);
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [startedAt] = useState(() => performance.now());
     const [elapsed, setElapsed] = useState(0);
     const [finished, setFinished] = useState(false);
-
-    useEffect(() => {
-        setHydrated(true);
-    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -34,7 +30,7 @@ export const QuizGame = ({ levelId }: Props) => {
         return () => clearInterval(interval);
     }, [startedAt]);
 
-    if (!hydrated) {
+    if (!hasHydrated) {
         return <div>Загрузка...</div>;
     }
 
@@ -61,8 +57,6 @@ export const QuizGame = ({ levelId }: Props) => {
     }
 
     const questionIds = run.quizQuestionIds[levelId] ?? [];
-
-    console.log(questionIds);
 
     const questions = questionIds
         .map((id) => QUESTION_BANK.find((question) => question.id === id))

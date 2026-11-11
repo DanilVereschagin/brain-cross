@@ -16,4 +16,4 @@ export const NotLevelMap = () => {
             </div>
         </div>
     );
-}
+};
