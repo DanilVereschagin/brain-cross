@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import cn from "classnames";
 import { LEVELS } from "@/entities/data/levels";
 import { useGameStore } from "@/entities/game/model/store";
 import { getLevelStatus } from "@/entities/game/model/game-utils";
-
 import { LockKeyhole, Check, Play } from "lucide-react";
 
 export const LevelMap = () => {
@@ -14,29 +12,7 @@ export const LevelMap = () => {
 
     const currentRun = useGameStore((state) => state.currentRun);
 
-    const startNewGame = useGameStore((state) => state.startNewGame);
-
-    const [hydrated, setHydrated] = useState(false);
-
-    useEffect(() => {
-        setHydrated(true);
-    }, []);
-
-    if (!hydrated) {
-        return <div>Загрузка...</div>;
-    }
-
-    if (!currentRun) {
-        return (
-            <div className="flex flex-col items-center gap-4">
-                <p>У тебя пока нет активной игры.</p>
-
-                <button onClick={startNewGame} className="rounded-xl bg-blue-600 px-6 py-3 text-white">
-                    Начать игру
-                </button>
-            </div>
-        );
-    }
+    if (!currentRun) return null;
 
     return (
         <div className="mx-auto max-w-4xl">

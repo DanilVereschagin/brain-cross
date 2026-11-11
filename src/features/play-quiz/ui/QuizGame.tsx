@@ -28,7 +28,7 @@ export const QuizGame = ({ levelId }: Props) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setElapsed(Math.floor((Date.now() - startedAt) / 1000));
+            setElapsed(Math.floor((performance.now() - startedAt) / 1000));
         }, 1000);
 
         return () => clearInterval(interval);
@@ -61,6 +61,8 @@ export const QuizGame = ({ levelId }: Props) => {
     }
 
     const questionIds = run.quizQuestionIds[levelId] ?? [];
+
+    console.log(questionIds);
 
     const questions = questionIds
         .map((id) => QUESTION_BANK.find((question) => question.id === id))

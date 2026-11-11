@@ -1,9 +1,9 @@
-import { LevelMap } from "@/widgets/level-map";
+import { LevelsPage as Levels } from "@/pages/levels";
 
 export default function LevelsPage() {
     return (
         <main className="min-h-screen bg-gray-50 px-4 py-10">
-            <LevelMap />
+            <Levels />
         </main>
     );
 }
