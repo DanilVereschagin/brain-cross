@@ -15,7 +15,7 @@ export const LevelMap = () => {
     if (!currentRun) return null;
 
     return (
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-[80%]">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold">BrainCross</h1>
 
@@ -24,7 +24,7 @@ export const LevelMap = () => {
                 <p className="mt-2 font-medium">Очки: {currentRun.totalScore}</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
                 {currentRun.levels.map((levelId, index) => {
                     const level = LEVELS.find((item) => item.id === levelId);
 

@@ -3,7 +3,6 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import type { GameRun, CompletedRun, GameState } from "./types";
 import { LEVELS } from "@/entities/data/levels";
 import { QUESTION_BANK } from "@/entities/data/questions";
-import { error } from "next/dist/build/output/log";
 
 const TOTAL_LEVELS = 20;
 
@@ -111,10 +110,11 @@ export const useGameStore = create<GameStore>()(
         {
             name: "braincross-storage",
             storage: createJSONStorage(() => localStorage),
-            onRehydrateStorage: () => (state) => {
+            onRehydrateStorage: () => (state, error) => {
                 if (error) {
                     console.error("Ошибка гидратации стора:", error);
                 }
+
                 state?.setHasHydrated(true);
             },
         },
