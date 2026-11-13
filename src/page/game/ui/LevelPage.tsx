@@ -27,10 +27,10 @@ export const LevelPage = async ({ params }: Props) => {
             return <QuizGame levelId={Number(levelId)} />;
 
         case "crossword":
-            return <MemoryGame levelId={Number(levelId)} />;
+            return <div>Кроссворд пока не реализован</div>;
 
         case "memory":
-            return <div>Поиск пар пока не реализован.</div>;
+            return <MemoryGame levelId={Number(levelId)} />;
 
         case "riddle":
             return <div>Загадки пока не реализованы.</div>;

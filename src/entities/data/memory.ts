@@ -5,7 +5,7 @@ export type MemoryPair = {
 };
 
 export const MEMORY_LEVELS: Record<number, MemoryPair[]> = {
-    3: [
+    1: [
         { id: "cat", symbol: "🐱", name: "Кот" },
         { id: "dog", symbol: "🐶", name: "Собака" },
         { id: "fox", symbol: "🦊", name: "Лиса" },

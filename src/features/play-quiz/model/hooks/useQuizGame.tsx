@@ -19,12 +19,14 @@ export const useQuizGame = ({ run, completeLevel, levelId }: Props) => {
     const [finished, setFinished] = useState(false);
 
     useEffect(() => {
+        if (finished) return;
+
         const interval = setInterval(() => {
             setElapsed(Math.floor((performance.now() - startedAt) / 1000));
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [startedAt]);
+    }, [finished, startedAt]);
 
     const currentPosition = run?.currentLevel;
     const currentLevelId = currentPosition ? run?.levels[currentPosition - 1] : undefined;
@@ -38,10 +40,9 @@ export const useQuizGame = ({ run, completeLevel, levelId }: Props) => {
     const question = questions[questionIndex];
 
     const handleAnswer = (answerIndex: number) => {
-        if (finished) return;
+        if (finished || !question) return;
 
         const isCorrect = answerIndex === question.correctAnswer;
-
         const newCorrectAnswers = correctAnswers + (isCorrect ? 1 : 0);
 
         setCorrectAnswers(newCorrectAnswers);
@@ -55,13 +56,10 @@ export const useQuizGame = ({ run, completeLevel, levelId }: Props) => {
 
         const passed = newCorrectAnswers >= 5;
 
-        if (passed) {
-            const score = newCorrectAnswers * 100 + Math.max(0, 200 - elapsed);
+        const score = passed ? newCorrectAnswers * 100 + Math.max(0, 200 - elapsed) : 0;
+        completeLevel(score);
 
-            completeLevel(score);
-
-            router.push("/levels");
-        }
+        router.push("/levels");
     };
 
     return {

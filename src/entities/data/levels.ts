@@ -1,10 +1,10 @@
 import type { Level } from "@/entities/level/model/types";
 
 export const LEVELS: Level[] = [
-    { id: 1, mode: "quiz", title: "Квиз №1", description: "Проверь свои знания" },
-    { id: 2, mode: "crossword", title: "Кроссворд №1", description: "Разгадай кроссворд" },
+    { id: 1, mode: "riddle", title: "Загадки №1", description: "Реши загадки" },
+    { id: 2, mode: "quiz", title: "Квиз №1", description: "Проверь свои знания" },
     { id: 3, mode: "memory", title: "Память №1", description: "Найди пары карточек" },
-    { id: 4, mode: "riddle", title: "Загадки №1", description: "Реши загадки" },
+    { id: 4, mode: "crossword", title: "Кроссворд №1", description: "Разгадай кроссворд" },
     { id: 5, mode: "memory", title: "Память №2", description: "Найди пары карточек" },
     { id: 6, mode: "quiz", title: "Квиз №2", description: "Проверь свои знания" },
     { id: 7, mode: "crossword", title: "Кроссворд №2", description: "Разгадай кроссворд" },
